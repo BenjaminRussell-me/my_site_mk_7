@@ -3,19 +3,26 @@ import {Store} from "./main"
 import axios from "axios"
 
 interface Api extends Object {
-    page: object
+    page: strapi
+}
+
+interface strapi {
+    Hero: {
+        url: string
+    }
 }
 
 class PageStore extends Store<Api> {
     protected data(): Api {
         return {
-            page: {}
+            page: {
+                Hero: {
+                    url: ''
+                }
+            }
         }
     }
-    setPage(data: object|null, location: string, slug: string | string[]) {
-        if(data !== null) {
-            this.state.page = data
-        } else {
+    setPage(location: string, slug: string | string[]) {
       axios.get(`http://192.168.7.196:1337/${location}`).then(response => {
           console.log(response.data)
         const found = response.data.filter((obj: { Slug: string }) => {
@@ -24,7 +31,7 @@ class PageStore extends Store<Api> {
         this.state.page = found[0]
         console.log(found)
     })
-}
+
 }
 }
 

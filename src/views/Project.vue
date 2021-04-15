@@ -4,8 +4,8 @@
     <h1>project</h1>
     {{ pageState }}
     <img
-      v-if="pageState.page.Hero"
-      :src="getStrapiMedia(pageState.page.Hero.url)"
+      v-if="pageState.page?.Hero"
+      :src="getStrapiMedia(pageState.page?.Hero?.url)"
     />
   </article>
 </template>
@@ -28,7 +28,7 @@ export default defineComponent({
     const { getStrapiMedia } = media();
     onMounted(() => {
       //first argument is to send already obtained data. if its not there it uses the Projects and route info to grab the data
-      pageStore.setPage(null, `Projects`, route.params.id);
+      pageStore.setPage(`Projects`, route.params.id);
     });
     return {
       pageState: pageStore.getState(),

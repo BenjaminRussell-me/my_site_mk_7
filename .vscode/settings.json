@@ -1,3 +1,10 @@
 {
-    "volar.tsPlugin": true
+    "volar.tsPlugin": true,
+    "cSpell.words": [
+        "commitlint",
+        "plex",
+        "stylelint",
+        "vite",
+        "vitejs"
+    ]
 }
