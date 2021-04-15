@@ -1,31 +1,27 @@
 <template>
-  <div :style="{ background: `hsl(${cs.hg},${cs.sg}%,${cs.lg}%)` }">
-    <router-link to="/About">About</router-link>
-    <router-link to="/Projects">Projects</router-link>
-    <router-link to="/Content">Content</router-link>
-    <ul>
-      <router-link
-        v-for="(item, index) in dataState.data"
-        :key="index"
-        :to="`/Projects/${item.Slug}`"
-        >{{ item.Title }}</router-link
-      >
-    </ul>
-    {{ dataState }}
-    <router-view :key="$route.fullPath" />
+  <main
+    :style="{
+      background: `hsl(${cs.hg},${cs.sg}%,${cs.lg}%)`,
+      color: `hsl(${cs.hw},${cs.sw}%,${cs.lw}%)`,
+    }"
+  >
+    <router-view :cs="cs" :key="$route.fullPath" />
+  </main>
+  <div id="overlay">
+    <navBar :cs="cs" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from "vue";
-import { dataStore } from "./store/data";
+import { computed, defineComponent } from "vue";
 import { themesStore } from "./store/theme";
+import navBar from "@/components/navBar.vue";
 export default defineComponent({
   name: "App",
+  components: {
+    navBar,
+  },
   setup() {
-    onMounted(() => {
-      dataStore.setData("Projects");
-    });
     const cs = computed(() => {
       const theme = themesStore.getState();
       const { h: hg, s: sg, l: lg } = theme.themes.dark.grey;
@@ -56,18 +52,99 @@ export default defineComponent({
       };
     });
     return {
-      dataState: dataStore.getState(),
       theme: themesStore.getState(),
       cs,
     };
   },
 });
 </script>
-
-<style lang="scss" scoped>
+<style lang="scss">
 $grey: hsl(220, 20%, 20%);
 $g1: hsl(200, 80%, 50%);
 $g2: hsl(185, 80%, 50%);
 $g3: hsl(160, 80%, 50%);
 $g4: hsl(145, 80%, 50%);
+body {
+  margin: 0;
+}
+main {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 3rem 3rem 6rem 3rem;
+}
+#overlay {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url(@ibm/plex/IBM-Plex-Sans-Variable/fonts/complete/ttf/IBMPlexSansVar-Roman.ttf);
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+@font-face {
+  font-family: "IBM Plex Sans Italic";
+  src: url("@ibm/plex/IBM-Plex-Sans-Variable/fonts/complete/ttf/IBMPlexSansVar-Italic.ttf");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+$textMargin: clamp(0.1em, 1vw / 2.7, 0.5em);
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+li,
+button,
+label,
+textarea,
+a,
+input {
+  font-family: IBM Plex Sans, sans-serif;
+}
+h1 {
+  font-size: clamp(2rem, 10 * 1vw / 2, 6rem);
+  font-weight: 1000;
+  margin: $textMargin 0 $textMargin 0;
+}
+h2 {
+  font-size: clamp(1.7rem, 10 * 1vw / 2.2, 4rem);
+  font-weight: 900;
+  margin: $textMargin 0 $textMargin 0;
+}
+h3 {
+  font-size: clamp(1.3rem, 10 * 1vw / 2.4, 3rem);
+  margin: $textMargin 0 $textMargin 0;
+  font-weight: 800;
+}
+h4 {
+  font-size: clamp(1.1rem, 10 * 1vw / 2.6, 2.3rem);
+  margin: $textMargin 0 $textMargin 0;
+  font-weight: 700;
+}
+h5 {
+  font-size: clamp(0.8rem, 10 * 1vw / 2.8, 1.5rem);
+  margin: $textMargin 0 $textMargin 0;
+  font-weight: 600;
+}
+p,
+li,
+button,
+label,
+textarea,
+a,
+input {
+  margin: $textMargin 0 $textMargin 0;
+  font-size: clamp(0.8rem, 10 * 1vw / 2.8, 1.5rem);
+  font-weight: 500;
+}
+em {
+  font-family: IBM Plex Sans Italic, sans-serif;
+  font-style: italic;
+}
 </style>

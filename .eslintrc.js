@@ -6,7 +6,10 @@ module.exports = {
     browser: true,
     node: true,
   },
-  plugins: ["prettier"],
+  parserOptions: {
+    parser: "@typescript-eslint/parser",
+  },
+  plugins: ["prettier", "@typescript-eslint"],
   extends: [
     // add more generic rulesets here, such as:
     "eslint:recommended",

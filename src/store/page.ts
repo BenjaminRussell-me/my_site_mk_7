@@ -12,8 +12,8 @@ class PageStore extends Store<Api> {
             page: {}
         }
     }
-    setPage(data: object, location: string, slug: string | string[]) {
-        if(data === {}) {
+    setPage(data: object|null, location: string, slug: string | string[]) {
+        if(data !== null) {
             this.state.page = data
         } else {
       axios.get(`http://192.168.7.196:1337/${location}`).then(response => {
@@ -21,7 +21,7 @@ class PageStore extends Store<Api> {
         const found = response.data.filter((obj: { Slug: string }) => {
             return obj.Slug === slug
         })
-        this.state.page = found
+        this.state.page = found[0]
         console.log(found)
     })
 }
