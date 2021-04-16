@@ -8,8 +8,13 @@
     <router-view :cs="cs" :key="$route.fullPath" />
   </main>
   <div id="overlay">
-  <router-link id="logo" to="/" :style="{color: `hsl(${cs.hw},${cs.sw}%,${cs.lw}%)`}" >BenjaminRussell.me</router-link>
-    
+    <router-link
+      id="logo"
+      to="/"
+      :style="{ color: `hsl(${cs.hw},${cs.sw}%,${cs.lw}%)` }"
+      ><img src="@/assets/img/logos/logo.svg" />BenjaminRussell.me</router-link
+    >
+
     <navBar :cs="cs" />
   </div>
 </template>
@@ -72,7 +77,7 @@ body {
 main {
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 3rem 3rem 6rem 3rem;
+  padding: 6rem 3rem 6rem 3rem;
 }
 #overlay {
   position: fixed;
@@ -81,13 +86,21 @@ main {
   height: 100vh;
   width: 100vw;
   display: grid;
+  z-index: 500;
   #logo {
     grid-area: 1/1/1/1;
     pointer-events: initial;
     text-decoration: none;
     font-weight: lighter;
-    justify-self: end;
-    margin: 1rem 1rem 0 0;
+    display: flex;
+    column-gap: 1rem;
+    justify-self: start;
+    align-self: start;
+    align-items: center;
+    margin: 1rem 1rem 0 1rem;
+    img {
+      width: 50px;
+    }
   }
 }
 @font-face {
