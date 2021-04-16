@@ -8,6 +8,8 @@
     <router-view :cs="cs" :key="$route.fullPath" />
   </main>
   <div id="overlay">
+  <router-link id="logo" to="/" :style="{color: `hsl(${cs.hw},${cs.sw}%,${cs.lw}%)`}" >BenjaminRussell.me</router-link>
+    
     <navBar :cs="cs" />
   </div>
 </template>
@@ -79,6 +81,14 @@ main {
   height: 100vh;
   width: 100vw;
   display: grid;
+  #logo {
+    grid-area: 1/1/1/1;
+    pointer-events: initial;
+    text-decoration: none;
+    font-weight: lighter;
+    justify-self: end;
+    margin: 1rem 1rem 0 0;
+  }
 }
 @font-face {
   font-family: "IBM Plex Sans";

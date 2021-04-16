@@ -8,25 +8,25 @@
     <nav :style="{ background: `hsl(${cs.hg},${cs.sg}%,${cs.lg - 5}%)` }">
       <router-link
         class="navLink"
-        :style="{ color: `hsl(${cs.h1},${cs.s1}%,${cs.l1}%)` }"
+        id="link1"
         to="/"
         >Home</router-link
       >
       <router-link
         class="navLink"
-        :style="{ color: `hsl(${cs.h2},${cs.s2}%,${cs.l2}%)` }"
+        id="link2"
         to="/About"
         >About</router-link
       >
       <router-link
         class="navLink"
-        :style="{ color: `hsl(${cs.h3},${cs.s3}%,${cs.l3}%)` }"
+        id="link3"
         to="/Projects"
         >Projects</router-link
       >
       <router-link
         class="navLink"
-        :style="{ color: `hsl(${cs.h4},${cs.s4}%,${cs.l4}%)` }"
+        id="link4"
         to="/Content"
         >Content</router-link
       >
@@ -66,6 +66,45 @@ nav {
   border-radius: 100% 100% 0 0;
   .navLink {
     text-decoration: none;
+    transition:  0.3s ease;
+    &:hover {
+      font-weight: 300;
+    }
+  }
+  @mixin glow($shadowColor) {
+    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px $shadowColor, 0 0 10px $shadowColor, 0 0 15px $shadowColor, 0 0 20px $shadowColor, 0 0 25px $shadowColor;
+  }
+  #link1 {
+    $shadowColor: $g1;
+    color: $shadowColor;
+    &:hover {
+      color: white;
+    @include glow($shadowColor);
+    }
+  }
+  #link2 {
+    $shadowColor: $g2;
+    color: $shadowColor;
+    &:hover {
+      color: white;
+    @include glow($shadowColor);
+    }
+  }
+  #link3 {
+    $shadowColor: $g3;
+    color: $shadowColor;
+    &:hover {
+      color: white;
+    @include glow($shadowColor);
+    }
+  }
+  #link4 {
+    $shadowColor: $g4;
+    color: $shadowColor;
+    &:hover {
+      color: white;
+    @include glow($shadowColor);
+    }
   }
 }
 </style>

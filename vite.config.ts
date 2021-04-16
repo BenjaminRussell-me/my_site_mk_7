@@ -13,7 +13,7 @@ export default defineConfig({
 css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `$injectedColor: orange;`
+        additionalData:`$g1: hsl(200, 80%, 50%); $g2: hsl(185, 80%, 50%); $g3: hsl(160, 80%, 50%); $g4: hsl(145, 80%, 50%);`
       }
     }
   }
