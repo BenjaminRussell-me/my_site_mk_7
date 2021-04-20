@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, onMounted } from "vue";
 import { themesStore } from "./store/theme";
 import navBar from "@/components/navBar.vue";
 export default defineComponent({
@@ -58,6 +58,14 @@ export default defineComponent({
         lw,
       };
     });
+    let vh = 0;
+    onMounted(() => {
+      window.addEventListener("resize", () => {
+        let vhFirst = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+        vh = vhFirst;
+      });
+    });
     return {
       theme: themesStore.getState(),
       cs,
@@ -71,11 +79,15 @@ $g1: hsl(200, 80%, 50%);
 $g2: hsl(185, 80%, 50%);
 $g3: hsl(160, 80%, 50%);
 $g4: hsl(145, 80%, 50%);
+html,
 body {
   margin: 0;
+  height: 100%;
 }
 main {
-  min-height: 100vh;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: auto;
   box-sizing: border-box;
   padding: 6rem 3rem 6rem 3rem;
 }

@@ -53,9 +53,9 @@ export default defineComponent({
 }
 nav {
   display: flex;
-  padding: 0.5rem 1rem 1.5rem 1rem;
   justify-content: center;
-  height: 2.5rem;
+  align-items: center;
+  height: clamp(3rem, 4vw, 5rem);
   column-gap: 2rem;
   pointer-events: initial;
   border-radius: 100% 100% 0 0;

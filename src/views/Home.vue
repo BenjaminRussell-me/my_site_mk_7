@@ -1,8 +1,6 @@
 <template>
   <section>
     <img id="welcome" alt="hi" src="../assets/img/Welcome.svg" />
-
-    <glowagon> </glowagon>
   </section>
 </template>
 <script lang="ts">
@@ -26,7 +24,8 @@ section {
   display: grid;
 }
 #welcome {
-  width: 60%;
+  width: 100%;
+  max-width: 1000px;
   grid-area: 1/1/1/1;
   place-self: center;
 }
