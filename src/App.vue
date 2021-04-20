@@ -91,7 +91,6 @@ body {
 }
 main {
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
   overflow: auto;
   box-sizing: border-box;
   padding: 6rem 3rem 6rem 3rem;
@@ -101,6 +100,7 @@ main {
   pointer-events: none;
   top: 0;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   display: grid;
   z-index: 500;
