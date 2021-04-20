@@ -59,12 +59,16 @@ export default defineComponent({
       };
     });
     let vh = ref(0);
+    function screenSize() {
+      let vhFirst = window.innerHeight * 0.01;
+      vh.value = vhFirst;
+      document.documentElement.style.setProperty("--vh", `${vh.value}px`);
+      console.log(vh);
+    }
     onMounted(() => {
+      screenSize();
       window.addEventListener("resize", () => {
-        let vhFirst = window.innerHeight * 0.01;
-        vh.value = vhFirst;
-        document.documentElement.style.setProperty("--vh", `${vh.value}px`);
-        console.log(vh);
+        screenSize();
       });
     });
     return {
