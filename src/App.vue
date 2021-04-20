@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from "vue";
+import { computed, defineComponent, onMounted, ref } from "vue";
 import { themesStore } from "./store/theme";
 import navBar from "@/components/navBar.vue";
 export default defineComponent({
@@ -58,17 +58,19 @@ export default defineComponent({
         lw,
       };
     });
-    let vh = 0;
+    let vh = ref(0);
     onMounted(() => {
       window.addEventListener("resize", () => {
         let vhFirst = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty("--vh", `${vh}px`);
-        vh = vhFirst;
+        vh.value = vhFirst;
+        document.documentElement.style.setProperty("--vh", `${vh.value}px`);
+        console.log(vh);
       });
     });
     return {
       theme: themesStore.getState(),
       cs,
+      vh,
     };
   },
 });
@@ -82,7 +84,6 @@ $g4: hsl(145, 80%, 50%);
 html,
 body {
   margin: 0;
-  height: 100%;
 }
 main {
   height: 100vh;
