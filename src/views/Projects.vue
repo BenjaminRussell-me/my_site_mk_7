@@ -12,7 +12,7 @@
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
 import { dataStore } from "../store/data";
-import projectCard from "@/components/projectCard.vue";
+import projectCard from "../components/projectCard.vue";
 export default defineComponent({
   props: {
     cs: {

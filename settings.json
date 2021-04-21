@@ -1,4 +1,4 @@
 {
-    "vetur.validation.template": false,
+    "vetur.validation.template": true,
     "eslint.validate": ["typescript", "vue"]
   }

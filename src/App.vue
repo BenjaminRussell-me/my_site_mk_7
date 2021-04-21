@@ -22,7 +22,7 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref } from "vue";
 import { themesStore } from "./store/theme";
-import navBar from "@/components/navBar.vue";
+import navBar from "./components/navBar.vue";
 export default defineComponent({
   name: "App",
   components: {

@@ -42,7 +42,7 @@
 import { defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { pageStore } from "../store/page";
-import contentHolder from "@/components/contentHolder.vue";
+import contentHolder from "../components/contentHolder.vue";
 import media from "../util/media";
 import noWidow from "../util/noWidow";
 export default defineComponent({

@@ -5,7 +5,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import glowagon from "@/components/glowagon.vue";
+import glowagon from "../components/glowagon.vue";
 export default defineComponent({
   components: {
     glowagon,
