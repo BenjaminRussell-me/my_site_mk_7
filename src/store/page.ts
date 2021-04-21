@@ -7,19 +7,33 @@ interface Api extends Object {
 }
 
 interface strapi {
-    Hero: {
-        url: string
-    }
+    Hero?: img
+    Title?: string | undefined
+    date?: string
+    basicBlock?: Array<basicBlock> | undefined
+}
+
+interface basicBlock {
+    textBlock?: Array<textBlock>
+    title: string
+    img: img
+    codePen: string
+}
+
+interface textBlock {
+    title: string
+    img: img
+    text: string
+}
+
+interface img {
+    url: string
 }
 
 class PageStore extends Store<Api> {
     protected data(): Api {
         return {
-            page: {
-                Hero: {
-                    url: ''
-                }
-            }
+            page:{}
         }
     }
     setPage(location: string, slug: string | string[]) {

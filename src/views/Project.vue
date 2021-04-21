@@ -8,32 +8,36 @@
         v-if="pageState.page?.Hero"
         :src="getStrapiMedia(pageState.page?.Hero?.url)"
       />
-      <section
-        class="contentBlock"
-        v-for="(block, index) in pageState.page.basicBlock"
-        :key="`block${pageState.page.Title}${index}`"
-      >
-        <h3 v-if="block.title">{{ nw(block.title) }}</h3>
-        <img
-          class="imgs"
-          v-if="block.img"
-          :src="getStrapiMedia(block.img?.url)"
-        />
-        <div
-          class="textBlock"
-          v-for="(textblock, index) in block.textBlock"
-          :key="`bockText${pageState.page.Title}${index}`"
+      <div v-if="pageState.page.basicBlock">
+        <section
+          class="contentBlock"
+          v-for="(block, index) in pageState.page.basicBlock"
+          :key="`block${pageState.page.Title}${index}`"
         >
-          <h4 v-if="textblock.title">{{ nw(textblock.title) }}</h4>
+          <h3 v-if="block.title">{{ nw(block.title) }}</h3>
           <img
             class="imgs"
-            v-if="textblock.img"
-            :src="getStrapiMedia(textblock.img?.url)"
+            v-if="block.img"
+            :src="getStrapiMedia(block.img?.url)"
           />
-          <p v-if="textblock.text">{{ nw(textblock.text) }}</p>
-        </div>
-        <p v-if="block.codePen">{{ block.codePen }}</p>
-      </section>
+          <div v-if="block.textBlock">
+            <div
+              class="textBlock"
+              v-for="(textblock, index) in block.textBlock"
+              :key="`bockText${pageState.page.Title}${index}`"
+            >
+              <h4 v-if="textblock.title">{{ nw(textblock.title) }}</h4>
+              <img
+                class="imgs"
+                v-if="textblock.img"
+                :src="getStrapiMedia(textblock.img?.url)"
+              />
+              <p v-if="textblock.text">{{ nw(textblock.text) }}</p>
+            </div>
+          </div>
+          <p v-if="block.codePen">{{ block.codePen }}</p>
+        </section>
+      </div>
     </article>
   </contentHolder>
 </template>

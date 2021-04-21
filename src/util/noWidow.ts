@@ -1,5 +1,5 @@
 export default function () {
-    function setNoWidow(text: string) {
+    function setNoWidow(text: string | undefined) {
         if(text !== ''  && text !== undefined) {
             console.log(text)
       const lastWord = text.slice(text.lastIndexOf(' ') + 1)
