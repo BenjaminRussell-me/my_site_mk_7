@@ -2,13 +2,17 @@ import {Store} from "./main"
 import axios from "axios"
 
 interface Api extends Object {
-    data: object
+    data: {
+        data: object
+    }
 }
 
 class DataStore extends Store<Api> {
     protected data(): Api {
         return {
-            data: {}
+            data: {
+                data: {}
+            }
         }
     }
     setData(location: string) {

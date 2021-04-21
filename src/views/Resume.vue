@@ -55,8 +55,22 @@
             <div>
               <h3>Contact</h3>
               <div id="contactInfo">
-                <h5>E-mail: BenjaminRussell@contact.me</h5>
-                <h5>Website: BenjaminRussell.me</h5>
+                <h5>
+                  E-mail:
+                  <a
+                    class="resumeLinks"
+                    :href="`mailto:${data?.data?.email}`"
+                    >{{ data?.data?.email }}</a
+                  >
+                </h5>
+                <h5>
+                  Website:
+                  <a
+                    class="resumeLinks"
+                    :href="`http://${data?.data?.website}`"
+                    >{{ data?.data?.website }}</a
+                  >
+                </h5>
               </div>
             </div>
           </div>
@@ -71,38 +85,30 @@
             <div id="resumeSkillsContent">
               <h3>Skills</h3>
               <ul>
-                <li>Javascript</li>
-                <li>SCSS</li>
-                <li>Html</li>
-                <li>Vue.js</li>
-                <li>SVG</li>
-                <li>CSS</li>
-                <li>GraphQL</li>
-                <li>Adobe Illustrator</li>
-                <li>Animation</li>
-                <li>Adobe Photoshop</li>
-                <li>Adobe Premere</li>
+                <li
+                  v-for="(skill, index) in data?.data?.skills"
+                  :key="`skills${index}`"
+                >
+                  {{ skill.text }}
+                </li>
               </ul>
             </div>
           </div>
           <div id="resumeExperience">
             <div>
               <h3>Experience</h3>
-              <h5>Hoglund Advertising and Analytics 2018 - Present</h5>
-              <p><em>Web developer and designer</em></p>
+              <h5>{{ data?.data?.experience?.title }}</h5>
+              <p>
+                <em>{{ data?.data?.experience?.subHead }}</em>
+              </p>
               <ul>
-                <li>Create and manage internal Css framework</li>
-                <li>
-                  Create and manage internal reusable javascript components
+                <li
+                  v-for="(experiences, index) in data?.data?.experience
+                    ?.experiences"
+                  :key="`experiences${index}`"
+                >
+                  {{ experiences.text }}
                 </li>
-                <li>Design and create new landing page layouts</li>
-                <li>
-                  Research and create examples for how to switch our website
-                  building stack to Vue.js
-                </li>
-                <li>Create html banner ads</li>
-                <li>All needed photoshop work</li>
-                <li>Asset and logo creation for clients that need it</li>
               </ul>
             </div>
             <div class="dualLineHolder">
@@ -113,16 +119,11 @@
 
           <div id="resumeAbout">
             <h3>About</h3>
-            <p>
-              I have been working as a developer / designer for the last
-              {{ new Date().getFullYear() - 2018 }} years. I strive to combine
-              my skills and interests in Javascript, Css, design, SVG, layout,
-              WebAssembly, animation UI and more. To create functional and
-              visually interesting products.
-            </p>
-            <p>
-              Wanna work on something together? Let me know! I'm always down for
-              a new interesting challenge.
+            <p
+              v-for="(about, index) in data?.data?.about"
+              :key="`about${index}`"
+            >
+              {{ about.text }}
             </p>
           </div>
         </div>
@@ -146,10 +147,11 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "Resume",
-  methods: {
-    print() {
+import { dataStore } from "../store/data";
+import { defineComponent, onMounted, computed, ref } from "vue";
+export default defineComponent({
+  setup() {
+    function print() {
       let stylesHtml = "";
       for (const node of [
         ...document.querySelectorAll('link[rel="stylesheet"], style'),
@@ -180,9 +182,18 @@ export default {
         winPrint?.print();
         winPrint?.close();
       }, 500);
-    },
+    }
+    const data = ref({});
+    onMounted(() => {
+      dataStore.setData("Resume");
+      data.value = dataStore.getState();
+    });
+    return {
+      print,
+      data,
+    };
   },
-};
+});
 </script>
 
 <style scoped lang="scss">
@@ -244,6 +255,12 @@ ul {
   height: 11in;
   background: white;
   color: hsl(208, 13%, 23%);
+}
+.resumeLinks {
+  font-weight: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  color: $g1;
 }
 #resumeBody {
   height: 100%;
