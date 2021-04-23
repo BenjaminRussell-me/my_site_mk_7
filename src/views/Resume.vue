@@ -84,9 +84,9 @@
             <div class="line bg2"></div>
             <div id="resumeSkillsContent">
               <h3>Skills</h3>
-              <ul>
+              <ul v-if="data.data.skills">
                 <li
-                  v-for="(skill, index) in data?.data?.skills"
+                  v-for="(skill, index) in data.data.skills"
                   :key="`skills${index}`"
                 >
                   {{ skill.text }}
@@ -95,16 +95,16 @@
             </div>
           </div>
           <div id="resumeExperience">
-            <div>
+            <div v-if="data.data.experience">
               <h3>Experience</h3>
               <h5>{{ data?.data?.experience?.title }}</h5>
               <p>
                 <em>{{ data?.data?.experience?.subHead }}</em>
               </p>
-              <ul>
+              <ul v-if="data.data.experience.experiences">
                 <li
-                  v-for="(experiences, index) in data?.data?.experience
-                    ?.experiences"
+                  v-for="(experiences, index) in data.data.experience
+                    .experiences"
                   :key="`experiences${index}`"
                 >
                   {{ experiences.text }}
@@ -117,12 +117,9 @@
             </div>
           </div>
 
-          <div id="resumeAbout">
+          <div id="resumeAbout" v-if="data.data.about">
             <h3>About</h3>
-            <p
-              v-for="(about, index) in data?.data?.about"
-              :key="`about${index}`"
-            >
+            <p v-for="(about, index) in data.data.about" :key="`about${index}`">
               {{ about.text }}
             </p>
           </div>
@@ -190,7 +187,7 @@ export default defineComponent({
     });
     return {
       print,
-      data,
+      data: dataStore.getState(),
     };
   },
 });

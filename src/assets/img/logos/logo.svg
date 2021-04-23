@@ -1,1 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 230.71 265.71"><defs><style>.cls-1{fill:url(#linear-gradient);}.cls-2{fill:none;stroke:#323941;stroke-miterlimit:10;stroke-width:10px;}.cls-3{fill:#323941;}</style><linearGradient id="linear-gradient" x1="-9.36" y1="157.29" x2="240.07" y2="108.43" gradientTransform="translate(-36.45 43.89) rotate(-18.66)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#448abf"/><stop offset="0.61" stop-color="#44a6af"/><stop offset="1" stop-color="#44bba3"/></linearGradient></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon class="cls-1" points="115.92 5.77 5.58 68.82 5.01 195.91 114.79 259.94 225.13 196.89 225.7 69.81 115.92 5.77"/><polygon class="cls-2" points="115.92 5.77 5.58 68.82 5.01 195.91 114.79 259.94 225.13 196.89 225.7 69.81 115.92 5.77"/><path class="cls-3" d="M176.8,155.86a63,63,0,0,1-121.9,0Z"/><circle class="cls-3" cx="175.85" cy="106.86" r="17"/><circle class="cls-3" cx="55.85" cy="105.86" r="17"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 230.7 265.7" style="enable-background:new 0 0 230.7 265.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:none;stroke:#323941;stroke-width:10;stroke-miterlimit:10;}
+	.st2{fill:#323941;}
+</style>
+<g id="Layer_2_1_">
+	<g id="Layer_1-2">
+		
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-177.0147" y1="46.2505" x2="72.4204" y2="95.1115" gradientTransform="matrix(0.9474 -0.32 -0.32 -0.9474 187.5154 183.0892)">
+			<stop  offset="0" style="stop-color:#1BA3E6"/>
+			<stop  offset="1" style="stop-color:#1AE670"/>
+		</linearGradient>
+		<polygon class="st0" points="115.9,5.8 5.6,68.8 5,195.9 114.8,259.9 225.1,196.9 225.7,69.8 		"/>
+		<polygon class="st1" points="115.9,5.8 5.6,68.8 5,195.9 114.8,259.9 225.1,196.9 225.7,69.8 		"/>
+		<path class="st2" d="M176.8,155.9c-8.8,33.7-43.2,53.8-76.9,45c-22-5.8-39.2-23-45-45H176.8z"/>
+		<circle class="st2" cx="175.9" cy="106.9" r="17"/>
+		<circle class="st2" cx="55.8" cy="105.9" r="17"/>
+	</g>
+</g>
+</svg>
