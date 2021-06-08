@@ -8,47 +8,26 @@
         v-if="pageState.page?.Hero"
         :src="getStrapiMedia(pageState.page?.Hero?.url)"
       />
-      <div v-if="pageState.page.basicBlock">
+      <div>
         <section
-          class="contentBlock"
-          v-for="(block, index) in pageState.page.basicBlock"
-          :key="`block${pageState.page.Title}${index}`"
-        >
-          <h3 v-if="block.title">{{ nw(block.title) }}</h3>
-          <img
-            class="imgs"
-            v-if="block.img"
-            :src="getStrapiMedia(block.img?.url)"
-          />
-          <div v-if="block.textBlock">
-            <div
-              class="textBlock"
-              v-for="(textblock, index) in block.textBlock"
-              :key="`bockText${pageState.page.Title}${index}`"
-            >
-              <h4 v-if="textblock.title">{{ nw(textblock.title) }}</h4>
-              <img
-                class="imgs"
-                v-if="textblock.img"
-                :src="getStrapiMedia(textblock.img?.url)"
-              />
-              <p v-if="textblock.text">{{ nw(textblock.text) }}</p>
-            </div>
-          </div>
-          <p v-if="block.codePen">{{ block.codePen }}</p>
-        </section>
+          v-html="md(pageState.page.content)"
+          v-if="pageState.page.content"
+          class="markdown"
+        ></section>
       </div>
     </article>
   </contentHolder>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, computed } from "vue";
 import { useRoute } from "vue-router";
 import { pageStore } from "../store/page";
 import contentHolder from "../components/contentHolder.vue";
 import media from "../util/media";
 import noWidow from "../util/noWidow";
+import marked from "marked";
+import DOMPurify from "dompurify";
 export default defineComponent({
   name: "App",
   props: {
@@ -64,13 +43,21 @@ export default defineComponent({
     const route = useRoute();
     const { getStrapiMedia } = media();
     const { setNoWidow } = noWidow();
+
     onMounted(() => {
       pageStore.setPage(`Projects`, route.params.id);
     });
+
+    function md(text: string) {
+      let root = import.meta.env.VITE_URL;
+      const mk = marked(text, { baseUrl: root });
+      return mk;
+    }
     return {
       pageState: pageStore.getState(),
       getStrapiMedia,
       nw: setNoWidow,
+      md,
     };
   },
 });
@@ -83,8 +70,13 @@ export default defineComponent({
 #projectHero {
   width: 100%;
 }
-.imgs {
-  max-width: clamp(300px, 100%, 1000px);
-  max-height: 700px;
+</style>
+<style lang="scss">
+#project {
+  img {
+    max-width: clamp(300px, 100%, 1000px);
+    max-height: 800px;
+    object-fit: contain;
+  }
 }
 </style>

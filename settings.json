@@ -1,4 +1,5 @@
 {
-    "vetur.validation.template": true,
+    "vetur.validation.template": false,
+    "vetur.experimental.templateInterpolationService": true,
     "eslint.validate": ["typescript", "vue"]
   }
