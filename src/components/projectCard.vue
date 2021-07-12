@@ -47,16 +47,18 @@ export default defineComponent({
   width: 100%;
   background: linear-gradient(to right, $g1, $g4);
   background-attachment: fixed;
+  border-radius: 5px 5px 0 0;
 }
 .cardContent {
   display: grid;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 .projectCard {
-  width: clamp(300px, 40vw, 500px);
+  width: clamp(300px, 40vw, 450px);
   height: 350px;
   background: hsla(0, 0%, 0%, 0.4);
   box-shadow: 0 0 5px 3px black;
+  border-radius: 5px;
   img {
     width: 100%;
     height: 150px;

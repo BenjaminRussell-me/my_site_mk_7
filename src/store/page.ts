@@ -38,15 +38,17 @@ class PageStore extends Store<Api> {
     }
     setPage(location: string, slug: string | string[]) {
       axios.get(`${import.meta.env.VITE_URL}/${location}`).then(response => {
-          console.log(response.data)
         const found = response.data.filter((obj: { Slug: string }) => {
             return obj.Slug === slug
         })
         this.state.page = found[0]
-        console.log(found)
     })
-
 }
+
+    purgePage() {
+        this.state.page = {}
+        console.log(this.state.page)
+    }
 }
 
 export const pageStore: PageStore = new PageStore()

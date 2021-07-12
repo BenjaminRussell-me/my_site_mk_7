@@ -28,6 +28,11 @@ export default defineComponent({
   components: {
     navBar,
   },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      console.log("hahahahha");
+    });
+  },
   setup() {
     const cs = computed(() => {
       const theme = themesStore.getState();

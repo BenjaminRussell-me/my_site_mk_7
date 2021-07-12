@@ -20,14 +20,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, computed } from "vue";
+import { defineComponent, onMounted, computed, onBeforeUnmount } from "vue";
 import { useRoute } from "vue-router";
 import { pageStore } from "../store/page";
 import contentHolder from "../components/contentHolder.vue";
 import media from "../util/media";
 import noWidow from "../util/noWidow";
-import marked from "marked";
-import DOMPurify from "dompurify";
+import markdown from "../util/markdown";
 export default defineComponent({
   name: "App",
   props: {
@@ -43,21 +42,19 @@ export default defineComponent({
     const route = useRoute();
     const { getStrapiMedia } = media();
     const { setNoWidow } = noWidow();
+    const { setMarkdown } = markdown();
 
     onMounted(() => {
       pageStore.setPage(`Projects`, route.params.id);
     });
-
-    function md(text: string) {
-      let root = import.meta.env.VITE_URL;
-      const mk = marked(text, { baseUrl: root });
-      return mk;
-    }
+    onBeforeUnmount(() => {
+      pageStore.purgePage();
+    });
     return {
       pageState: pageStore.getState(),
       getStrapiMedia,
       nw: setNoWidow,
-      md,
+      md: setMarkdown,
     };
   },
 });
